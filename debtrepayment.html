@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <h1>Debt Analyst</h1>
+        <p>Welcome to Debt Analyst, where we can take a look at finances and provide an overview of plans to budget and save.</p>
+        <link href="style.css" rel="stylesheet" type="text/css"/>
+    </head>
+
+    <body>
+        <header>Debt Repayment Tool</header>
+        <! -- Input Form -->
+            <h3>Enter Information:</h3>
+            <form>
+                Name:<br> <input type="text" name="name">
+                <br><br>
+                Average Yearly Income After Taxes:<br> <input type="number" name="income">
+                <br><br>
+                Loan(s):<br>
+                <div id="loan-container">
+                    <div class="loan-input-group">
+                        <input type="number" name="loans[]" placeholder="Loan amount ($)" class="loan-input">
+                        <input type="number" name="interestRates[]" placeholder="Interest rate (%)" class="interest-rate-input" disabled>
+                        </div>
+                </div>
+                <button type="button" id="add-loan">Add Another Loan</button>
+
+                <br><br>
+
+            <button type="submit">Submit</button>
+            </form>
+    
+            <script>
+
+                document.getElementById('add-loan').addEventListener('click', function() {
+                    const loanContainer = document.getElementById('loan-container');
+        
+                    const newLoanGroup = document.createElement('div');
+                    newLoanGroup.classList.add('loan-input-group');
+                    newLoanGroup.innerHTML = `
+                        <input type="number" name="loans[]" placeholder="Loan amount" class="loan-input">
+                        <input type="number" name="interestRates[]" placeholder="Interest rate (%)" class="interest-rate-input" disabled>
+                        <button type="button" class="remove-loan">Remove</button>
+                    `;
+                    loanContainer.appendChild(newLoanGroup);
+
+                    const loanInput = newLoanGroup.querySelector('.loan-input');
+                    const interestRateInput = newLoanGroup.querySelector('.interest-rate-input');
+                    const removeButton = newLoanGroup.querySelector('.remove-loan');
+        
+                    loanInput.addEventListener('input', function() {
+                        if (loanInput.value) {
+                            interestRateInput.disabled = false;
+                        } else {
+                            interestRateInput.value = '';
+                            interestRateInput.disabled = true;
+                        }
+                    });
+        
+                    // Remove the loan group
+                    removeButton.addEventListener('click', function() {
+                        loanContainer.removeChild(newLoanGroup);
+                    });
+                });
+        
+                const initialLoanInput = document.querySelector('.loan-input');
+                const initialInterestRateInput = document.querySelector('.interest-rate-input');
+        
+                initialLoanInput.addEventListener('input', function() {
+                    if (initialLoanInput.value) {
+                        initialInterestRateInput.disabled = false;
+                    } else {
+                        initialInterestRateInput.value = '';
+                        initialInterestRateInput.disabled = true;
+                    }
+                });
+            </script>
+
+    </body>
+</html>
