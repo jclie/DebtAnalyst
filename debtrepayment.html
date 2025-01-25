@@ -8,19 +8,18 @@
                 <p><a class="nav-link active" aria-current="page" href="index.html">Home</a></p>
             </li>
             <li class="nav-item">
-                <p><a class="nav-link active" aria-current="page" href="debtrepyament.html">Debt Repayment Tool</a></p>
+                <p><a class="nav-link active" aria-current="page" href="debtrepayment.html">Debt Repayment Tool</a></p>
             </li>
         </div>
         </li></ul></p>
         </li>
         </ul>
         <meta charset="UTF-8">
-        <h1>Debt Analyst</h1>
+        <h1>Debt Repayment Tool</h1>
         <link href="style.css" rel="stylesheet" type="text/css"/>
     </head>
 
     <body>
-        <header>Debt Repayment Tool</header>
         <! -- Input Form -->
             <h3>Enter Information:</h3>
             <form>
@@ -32,7 +31,7 @@
                 <div id="loan-container">
                     <div class="loan-input-group">
                         <input type="number" name="loans[]" placeholder="Loan amount ($)" class="loan-input">
-                        <input type="number" name="interestRates[]" placeholder="Interest rate (%)" class="interest-rate-input" disabled>
+                        <input type="number" name="interestRates[]" placeholder="Interest rate (%)" class="interest-rate-input">
                         </div>
                 </div>
                 <button type="button" id="add-loan">Add Another Loan</button>
@@ -41,52 +40,6 @@
 
             <button type="submit">Submit</button>
             </form>
-    
-            <script>
-
-                document.getElementById('add-loan').addEventListener('click', function() {
-                    const loanContainer = document.getElementById('loan-container');
-        
-                    const newLoanGroup = document.createElement('div');
-                    newLoanGroup.classList.add('loan-input-group');
-                    newLoanGroup.innerHTML = `
-                        <input type="number" name="loans[]" placeholder="Loan amount" class="loan-input">
-                        <input type="number" name="interestRates[]" placeholder="Interest rate (%)" class="interest-rate-input" disabled>
-                        <button type="button" class="remove-loan">Remove</button>
-                    `;
-                    loanContainer.appendChild(newLoanGroup);
-
-                    const loanInput = newLoanGroup.querySelector('.loan-input');
-                    const interestRateInput = newLoanGroup.querySelector('.interest-rate-input');
-                    const removeButton = newLoanGroup.querySelector('.remove-loan');
-        
-                    loanInput.addEventListener('input', function() {
-                        if (loanInput.value) {
-                            interestRateInput.disabled = false;
-                        } else {
-                            interestRateInput.value = '';
-                            interestRateInput.disabled = true;
-                        }
-                    });
-        
-                    // Remove the loan group
-                    removeButton.addEventListener('click', function() {
-                        loanContainer.removeChild(newLoanGroup);
-                    });
-                });
-        
-                const initialLoanInput = document.querySelector('.loan-input');
-                const initialInterestRateInput = document.querySelector('.interest-rate-input');
-        
-                initialLoanInput.addEventListener('input', function() {
-                    if (initialLoanInput.value) {
-                        initialInterestRateInput.disabled = false;
-                    } else {
-                        initialInterestRateInput.value = '';
-                        initialInterestRateInput.disabled = true;
-                    }
-                });
-            </script>
-
+            <script src="debtrepayment.js"></script>
     </body>
 </html>
