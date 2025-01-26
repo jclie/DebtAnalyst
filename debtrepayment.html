@@ -21,25 +21,38 @@
 
     <body>
         <!-- Input Form -->
+            <div class="input">
             <h3>Enter Information:</h3>
-            <form>
-                Name:<br> <input type="text" name="name">
+            <form id = "inputForm">
+                Name:<br> <input type="text" id="name" name="name" placeholder="ex. John Smith" >
                 <br><br>
-                Average Yearly Income After Taxes:<br> <input type="number" name="income">
+                Average Yearly Income After Taxes:<br> <input type="number" id="income" name="income" placeholder="($) ex. 1000.00">
                 <br><br>
                 Loan(s):<br>
                 <div id="loan-container">
                     <div class="loan-input-group">
-                        <input type="number" name="loans[]" placeholder="Loan amount ($)" class="loan-input">
-                        <input type="number" name="interestRates[]" placeholder="Interest rate (%)" class="interest-rate-input">
+                        <input type="number" id="loans" name="loans[]" placeholder="Loan amount ($) ex. 1000.00" class="loan-input">
+                        <input type="float" id="interestRates" name="interestRates[]" placeholder="Interest rate ex. 0.01" class="interest-rate-input">
                         </div>
                 </div>
                 <button type="button" id="add-loan">Add Another Loan</button>
-
+                <br><br>
+                Number of Times Interest Compounded in a Year:<br> <input type="number" id="numInt" name = "compoundRate" placeholder="ex. 12">
+                <br><br>
+                Number of Years Wished to Pay Off Loan:<br> <input type="number" id="numYear" name = "loanYear" placeholder="ex. 1">
                 <br><br>
 
             <button type="submit">Submit</button>
             </form>
+
+        <!-- Dashboard -->
+            <br>
+            <section id="dashboard">
+            <h2>Debt Dashboard</h2>
+            <div id="debtsList"></div>
+            <p id="result-message"> No data yet.</p>
+            </section>
+
             <script src="debtrepayment.js"></script>
     </body>
 </html>
